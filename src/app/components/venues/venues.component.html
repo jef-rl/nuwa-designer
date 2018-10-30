@@ -1,0 +1,32 @@
+<div *ngIf="index===-1 && locations">
+    <button
+        mat-button
+        (click)="processLocations()"
+    >
+        Create Venues
+    </button>
+</div>
+<div *ngIf="index===-1 && locations">
+  <button
+      mat-button
+      (click)="processOutcodes()"
+  >
+      Create Outcodes
+  </button>
+</div>
+
+<div *ngIf="index>-1">
+{{(index/processLength)*100 | number:'1.2-2' }}%
+</div>
+<hr>
+<ul *ngIf="index===-1 && locations">
+    <li *ngFor="let location of locations">
+        <span>{{location?.id}}</span>
+        <button
+            mat-button
+            (click)="previewLocation(location)"
+        >
+            Preview Venue
+        </button>
+    </li>
+</ul>

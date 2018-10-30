@@ -1,0 +1,128 @@
+<!-- <mat-form-field>
+    <mat-select [(value)]="filter.type" (selectionChange)="sendsearch()">
+      <mat-option value="all">All</mat-option>
+      <mat-option value="name">Name</mat-option>
+      <mat-option value="street">Address</mat-option>
+      <mat-option value="town">Town</mat-option>
+      <mat-option value="region">Region</mat-option>
+      <mat-option value="country">Country</mat-option>
+      <mat-option value="postcode">Postcode</mat-option>
+    </mat-select>
+  </mat-form-field> -->
+<form search-form>
+  <div search-field>
+    <div ico-panel>
+      <div *ngIf="searchControl.value?.tag" overlay>
+        <div suffix>
+          <div style="flex:1 1 0px"></div>
+          <div cols-end *ngIf="searchControl.value.type!=='name'">
+            <div col-info>
+              <div info><small>NEAREST</small></div>
+              <div info><small>IN MILES</small></div>
+              <mat-icon ico-sm>place</mat-icon>
+            </div>
+            <div spacing></div>
+            <div col-info>
+              <div info><small>WITHIN</small></div>
+              <div info>{{distance}}<small> MILES</small></div>
+              <mat-icon ico-sm>360</mat-icon>
+            </div>
+          </div>
+          <div cols-end *ngIf="searchControl.value.type==='name'">
+            <div col-info>
+                <div info><small> </small></div>
+                <div info><small>RATING</small></div>
+                <mat-icon ico-sm>grade</mat-icon>
+            </div>
+          </div>
+          <div spacing></div>
+          <div spacing></div>
+        </div>
+      </div>
+    </div>
+    <div style="flex:1 1 auto;">
+      <mat-form-field search-field>
+        <div heading-selection><span style="opacity: 0">{{searchControl?.value?.tag.slice(0,searchControl?.value?.text.length)}}</span><span *ngIf="searchControl?.value?.tag" extra [class.editing]="autoGroup.isOpen">{{searchControl?.value?.tag.slice(searchControl?.value?.text.length)}}</span></div>
+        <input type="text" matInput placeholder="Search" [formControl]="searchControl" [matAutocomplete]="autoGroup">
+        <div matSuffix *ngIf="searchControl.value?.tag">
+          <div suffix>
+            <div cols-end *ngIf="searchControl.value.type!=='name'">
+              <div col-info>
+                <div info>{{searchControl.value?.near | number:'0.1-1'}}</div>
+              </div>
+              <div spacing></div>
+              <div col-info>
+                <div info>{{searchControl.value.count}}</div>
+              </div>
+            </div>
+            <div cols-end *ngIf="searchControl.value.type==='name'">
+              <div col-info>
+                <div info>{{searchControl.value.rating}}</div>
+              </div>
+            </div>
+            <button mat-icon-button color="primary" *ngIf="searchControl.value?.tag" mat-icon-button aria-label="Clear" (click)="reset()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+        <mat-autocomplete #autoGroup="matAutocomplete" autoActiveFirstOption [displayWith]="displayFn">
+          <ng-container *ngFor="let section of matches | async">
+            <ng-container *ngIf="section?.tags.length>0">
+              <ng-container *ngIf="section.heading !== ''">
+                <div divider></div>
+                <div suffix>
+                  <div heading>{{section?.heading}}</div>
+                  <div cols-end *ngIf="section.heading==='Places'">
+                    <div col-info>
+                      <div info><small>NEAREST</small></div>
+                      <div info><small>IN MILES</small></div>
+                      <mat-icon ico-sm>place</mat-icon>
+                    </div>
+                    <div spacing></div>
+                    <div col-info>
+                      <div info><small>WITHIN</small></div>
+                      <div info>{{distance}}<small> MILES</small></div>
+                      <mat-icon ico-sm>360</mat-icon>
+                    </div>
+                    <div spacing></div>
+                  </div>
+                  <div cols-end *ngIf="section.heading==='Venues'">
+                    <div col-info>
+                      <div info><small>RATING</small></div>
+                      <mat-icon ico-sm>grade</mat-icon>
+                    </div>
+                    <div spacing></div>
+                  </div>
+                </div>
+              </ng-container>
+              <mat-option option *ngFor="let group of section?.tags; let l=last" [value]="group">
+                <ng-container *ngIf="true">
+                  <div suffix>
+                    <div heading>{{group.tag}}</div>
+                    <div cols-end *ngIf="group.type!=='name'">
+                      <div col-info>
+                        <div data>{{group?.near | number:'0.1-1'}}</div>
+                      </div>
+                      <div spacing></div>
+                      <div col-info>
+                        <div data>{{group.count}}</div>
+                      </div>
+                    </div>
+                    <div cols-end *ngIf="group.type==='name'">
+                      <div col-info>
+                        <div data>{{group.rating}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </mat-option>
+            </ng-container>
+          </ng-container>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+<!-- <app-filters [criteria]="criteria" (setDistance)="setDistance($event)"></app-filters> -->
+<div>{{searchControl?.value?.venues?.length}}</div>
+<div>{{searchControl.value | json}}</div>

@@ -1,0 +1,62 @@
+:host {
+  display: flex;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .5);
+}
+
+div[top-nav-bar-lg] {
+  display: grid;
+  grid-template-columns: 80px 80px 80px 80px 80px 80px 80px 80px 80px 80px 80px 80px;
+  grid-template-rows: 18px 18px 18px 18px 18px 18px;
+}
+
+
+div[menu] {
+  grid-column: 5 / 13;
+  grid-row: 4 / 7;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+        
+div[account] {
+  grid-column: 7 / 11;
+  grid-row: 1 / 4;
+  display: grid;
+  justify-items: end;
+  align-items: center;
+}
+        
+div[claim] {
+  grid-column: 11 / 13;
+  grid-row: 1 / 4;
+  display: grid;
+  justify-items: start;
+  align-items: center;
+}
+        
+div[logo] {
+  grid-column: 1 / 5;
+  grid-row: 1 / 7;
+  display: grid;
+  justify-items: start;
+  align-items: center;
+}
+
+div[top-nav-bar-lg] {
+  margin: auto;
+  background-color: white;
+  align-self: center flex-start;
+  display: grid;
+}
+
+div[logo] {
+  background-image: url('../../assets/logo.png');
+  background-size: contain;
+  background-position: left center;
+  background-repeat: no-repeat;
+  margin: 10px;  
+}
+
+div[menu] {
+  border-top: 1px solid rgba(0,0,0,.1);
+}

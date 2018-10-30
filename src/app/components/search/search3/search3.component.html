@@ -1,0 +1,287 @@
+<form search-form>
+  <div search-field>
+    <div ico-panel>
+      <div *ngIf="searchControl.value?.tag" overlay>
+        <div suffix>
+          <div style="flex:1 1 0px"></div>
+          <div cols-end *ngIf="searchControl.value.type!=='name'">
+            <div col-info>
+              <div info><small>NEAREST</small></div>
+              <div info><small>IN MILES</small></div>
+              <mat-icon ico-sm>place</mat-icon>
+            </div>
+            <div spacing></div>
+            <div col-info>
+              <div info><small>WITHIN</small></div>
+              <div info>{{criteria?.maxDistance}}<small> MILES</small></div>
+              <mat-icon ico-sm>360</mat-icon>
+            </div>
+          </div>
+          <div cols-end *ngIf="searchControl.value.type==='name'">
+            <div col-info>
+              <div info><small> </small></div>
+              <div info><small>RATING</small></div>
+              <mat-icon ico-sm>grade</mat-icon>
+            </div>
+          </div>
+          <div spacing></div>
+          <div spacing></div>
+        </div>
+      </div>
+      <button mat-icon-button (click)="searchTools.toggle()" style="position: absolute; right: -40px; bottom: 12px;">
+        <mat-icon>{{ searchTools.expanded ? 'expand_less' : 'expand_more' }}</mat-icon>
+      </button>
+    </div>
+    <div style="flex:1 1 auto;flex-direction: row;flex-wrap: nowrap">
+      <mat-form-field search-field>
+        <div heading-selection><span style="opacity: 0" *ngIf="searchControl?.value?.tag">{{searchControl?.value?.tag.slice(0,searchControl?.value?.text.length)}}</span><span *ngIf="searchControl?.value?.tag" extra [class.editing]="autoGroup.isOpen">{{searchControl?.value?.tag.slice(searchControl?.value?.text.length)}}</span></div>
+        <input type="text" matInput placeholder="Search" [formControl]="searchControl" [matAutocomplete]="autoGroup">
+        <div matSuffix *ngIf="searchControl.value?.tag">
+          <div suffix>
+            <div cols-end *ngIf="searchControl.value.type!=='name'">
+              <div col-info>
+                <div info>{{selectedLocation?.near | number:'0.1-1'}}</div>
+              </div>
+              <div spacing></div>
+              <div col-info>
+                <div info>{{selectedLocation.count}}</div>
+              </div>
+            </div>
+            <div cols-end *ngIf="searchControl.value.type==='name'">
+              <div col-info>
+                <div info>{{searchControl.value.rating}}</div>
+              </div>
+            </div>
+            <button mat-icon-button color="primary" *ngIf="searchControl.value?.tag" mat-icon-button aria-label="Clear" (click)="reset()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+        <mat-autocomplete #autoGroup="matAutocomplete" autoActiveFirstOption [displayWith]="displayFn">
+          <div divider></div>
+          <div suffix>
+            <div heading>Places</div>
+            <div cols-end>
+              <div col-info>
+                <div info><small>NEAREST</small></div>
+                <div info><small>IN MILES</small></div>
+                <mat-icon ico-sm>place</mat-icon>
+              </div>
+              <div spacing></div>
+              <div col-info>
+                <div info><small>WITHIN</small></div>
+                <div info>{{criteria?.maxDistance}}<small> MILES</small></div>
+                <mat-icon ico-sm>360</mat-icon>
+              </div>
+              <div spacing></div>
+            </div>
+          </div>
+          <mat-option option *ngFor="let group of autoCompleteLocations; let l=last" [value]="getLocationValue( group, criteria)">
+            <div suffix>
+              <div heading>{{group.tag}}</div>
+              <div cols-end>
+                <div col-info>
+                  <div data>{{group?.near | number:'0.1-1'}}</div>
+                </div>
+                <div spacing></div>
+                <div col-info>
+                  <div data>{{group.count}}</div>
+                </div>
+              </div>
+            </div>
+          </mat-option>
+          <div divider></div>
+          <div suffix>
+            <div heading>Venues</div>
+            <div cols-end>
+              <div col-info>
+                <div info><small>RATING</small></div>
+                <mat-icon ico-sm>grade</mat-icon>
+              </div>
+              <div spacing></div>
+            </div>
+          </div>
+          <mat-option option *ngFor="let group of autoCompleteVenues; let l=last" [value]="getVenueValue( group, criteria)" [routerLink]="'/venue/'+group?.dash">
+            <div suffix>
+              <div heading>{{group.name}}</div>
+              <div cols-end>
+                <div col-info>
+                  <div data>{{group.rating}}</div>
+                </div>
+              </div>
+            </div>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+<mat-expansion-panel #searchTools [hideToggle]="true" style="max-width: 600px; position: relative; top: -16px; left: 16px;">
+  <mat-expansion-panel-header [collapsedHeight]="'0px'" [expandedHeight]="'0px'">
+    <mat-panel-title>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div style="display:flex; flex-direction: row;">
+    <mat-list dense style="flex:1 0 200px;border-right: 1px solid rgba(0,0,0,.11);">
+      <!-- <mat-divider></mat-divider> -->
+      <h3 mat-subheader>
+        <div></div>
+        <div spacer></div>
+        <mat-icon mat-list-icon *ngIf="criteria?.minNights > 0 || criteria?.maxNights  === 0" (click)="search.MinNights(0);search.MaxNights(99)">clear</mat-icon>
+      </h3>
+      <h3 mat-subheader>
+        <div></div>
+        <div spacer></div>
+      </h3>
+      <!-- <mat-divider></mat-divider> -->
+      <mat-list-item filter-criteria (click)="search.MinNights(0);search.MaxNights(0)">
+        <mat-icon mat-list-icon>{{(criteria?.maxNights===0) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> Spa Days
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.MinNights(1);search.MaxNights(99)">
+        <mat-icon mat-list-icon>{{(criteria?.minNights>0) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> Spa Breaks
+      </mat-list-item>
+      <!-- <mat-list-item  filter-criteria (click)="setPackageType.emit('NEW')">
+                          <mat-icon mat-list-icon>{{(criteria?.packageType | contains:'NEW') ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> New Offers</mat-list-item>
+                        <mat-list-item  filter-criteria (click)="setPackageType.emit('ENDING')">
+                          <mat-icon mat-list-icon>{{(criteria?.packageType | contains:'ENDING') ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> Ending Soon</mat-list-item> -->
+      <!-- <mat-divider></mat-divider> -->
+    </mat-list>
+    <mat-list dense style="flex:1 0 100px">
+      <h3 mat-subheader>
+        <div>Distance</div>
+        <div spacer></div>
+      </h3>
+      <h3 mat-subheader>
+        <div>range miles</div>
+        <div spacer></div>
+      </h3>
+      <!-- <mat-divider></mat-divider> -->
+      <mat-list-item filter-criteria (click)="search.Distance(5)">
+        <mat-icon mat-list-icon>{{(criteria?.maxDistance === 5) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 5
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.Distance(15)">
+        <mat-icon mat-list-icon>{{(criteria?.maxDistance === 15) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 15
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.Distance(25)">
+        <mat-icon mat-list-icon>{{(criteria?.maxDistance === 25) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 25
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.Distance(35)">
+        <mat-icon mat-list-icon>{{(criteria?.maxDistance === 35) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 35
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.Distance(45)">
+        <mat-icon mat-list-icon>{{(criteria?.maxDistance === 45) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 45
+      </mat-list-item>
+      <!-- <mat-divider></mat-divider> -->
+    </mat-list>
+    <mat-list dense style="flex:1 0 100px;border-right: 1px solid rgba(0,0,0,.11);">
+      <h3 mat-subheader>
+        <div spacer></div>
+        <mat-icon mat-list-icon *ngIf="criteria?.maxDistance !== 50" (click)="search.Distance(50);">clear</mat-icon>
+      </h3>
+      <h3 mat-subheader>
+        <div spacer></div>
+      </h3>
+      <!-- <mat-divider></mat-divider> -->
+      <mat-list-item filter-criteria (click)="search.Distance(10)">
+        <mat-icon mat-list-icon>{{(criteria?.maxDistance === 10) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 10
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.Distance(20)">
+        <mat-icon mat-list-icon>{{(criteria?.maxDistance === 20) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 20
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.Distance(30)">
+        <mat-icon mat-list-icon>{{(criteria?.maxDistance === 30) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 30
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.Distance(40)">
+        <mat-icon mat-list-icon>{{(criteria?.maxDistance === 40) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 40
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.Distance(50)">
+        <mat-icon mat-list-icon>{{(criteria?.maxDistance === 50) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 50
+      </mat-list-item>
+      <!-- <mat-divider></mat-divider> -->
+    </mat-list>
+    <mat-list dense style="flex:1 0 100px;">
+      <h3 mat-subheader>
+        <div>Price</div>
+        <div spacer></div>
+      </h3>
+      <h3 mat-subheader>
+        <div>minimum</div>
+        <div spacer></div>
+      </h3>
+      <!-- <mat-divider></mat-divider> -->
+      <mat-list-item filter-criteria (click)="search.MinPrice(50)" *ngIf="criteria?.maxPrice>50">
+        <mat-icon mat-list-icon>{{(criteria?.minPrice === 50) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> £50
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.MinPrice(100)" *ngIf="criteria?.maxPrice>100">
+        <mat-icon mat-list-icon>{{(criteria?.minPrice === 100) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> £100
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.MinPrice(150)" *ngIf="criteria?.maxPrice>150">
+        <mat-icon mat-list-icon>{{(criteria?.minPrice === 150) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> £150
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.MinPrice(200)" *ngIf="criteria?.maxPrice>200">
+        <mat-icon mat-list-icon>{{(criteria?.minPrice === 200) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> £200
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.MinPrice(250)" *ngIf="criteria?.maxPrice>250">
+        <mat-icon mat-list-icon>{{(criteria?.minPrice === 250) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> £250
+      </mat-list-item>
+      <mat-list-item filter-criteria *ngIf="criteria?.maxPrice<=50">
+        <mat-icon mat-list-icon></mat-icon> £50
+      </mat-list-item>
+      <mat-list-item filter-criteria *ngIf="criteria?.maxPrice<= 100">
+        <mat-icon mat-list-icon></mat-icon> £100
+      </mat-list-item>
+      <mat-list-item filter-criteria *ngIf="criteria?.maxPrice<=150">
+        <mat-icon mat-list-icon></mat-icon> £150
+      </mat-list-item>
+      <mat-list-item filter-criteria *ngIf="criteria?.maxPrice<=200">
+        <mat-icon mat-list-icon></mat-icon> £200
+      </mat-list-item>
+      <mat-list-item filter-criteria *ngIf="criteria?.maxPrice<=250">
+        <mat-icon mat-list-icon></mat-icon> £250
+      </mat-list-item>
+      <!-- <mat-divider></mat-divider> -->
+    </mat-list>
+    <mat-list dense style="flex:1 0 100px;">
+      <h3 mat-subheader>
+        <div spacer></div>
+        <mat-icon mat-list-icon *ngIf="criteria?.minPrice !== 0 || criteria?.maxPrice !== 9999" (click)="search.MinPrice(0);search.MaxPrice(9999)">clear</mat-icon>
+      </h3>
+      <h3 mat-subheader>
+        <div>maximum</div>
+        <div spacer></div>
+      </h3>
+      <!-- <mat-divider></mat-divider> -->
+      <mat-list-item filter-criteria *ngIf="criteria?.minPrice>=50">
+        <mat-icon mat-list-icon></mat-icon> £50
+      </mat-list-item>
+      <mat-list-item filter-criteria *ngIf="criteria?.minPrice >= 100">
+        <mat-icon mat-list-icon></mat-icon> £100
+      </mat-list-item>
+      <mat-list-item filter-criteria *ngIf="criteria?.minPrice>=150">
+        <mat-icon mat-list-icon></mat-icon> £150
+      </mat-list-item>
+      <mat-list-item filter-criteria *ngIf="criteria?.minPrice>=200">
+        <mat-icon mat-list-icon></mat-icon> £200
+      </mat-list-item>
+      <mat-list-item filter-criteria *ngIf="criteria?.minPrice>=250">
+        <mat-icon mat-list-icon></mat-icon> £250
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.MaxPrice(50)" *ngIf="criteria?.minPrice<50">
+        <mat-icon mat-list-icon>{{(criteria?.maxPrice === 50) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> £50
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.MaxPrice(100)" *ngIf="criteria?.minPrice<100">
+        <mat-icon mat-list-icon>{{(criteria?.maxPrice === 100) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> £100
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.MaxPrice(150)" *ngIf="criteria?.minPrice<150">
+        <mat-icon mat-list-icon>{{(criteria?.maxPrice === 150) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> £150
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.MaxPrice(200)" *ngIf="criteria?.minPrice<200">
+        <mat-icon mat-list-icon>{{(criteria?.maxPrice === 200) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> £200
+      </mat-list-item>
+      <mat-list-item filter-criteria (click)="search.MaxPrice(250)" *ngIf="criteria?.minPrice<250">
+        <mat-icon mat-list-icon>{{(criteria?.maxPrice === 250) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> £250
+      </mat-list-item>
+      <!-- <mat-divider></mat-divider> -->
+    </mat-list>
+  </div>
+</mat-expansion-panel>

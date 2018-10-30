@@ -1,0 +1,311 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [opened]="leftopen" style="padding:10px;">
+    <ng-container *ngIf="activeDesign===null">
+      <div style="display:flex">
+        <button mat-icon-button (click)="newDesigner()">
+          <mat-icon>insert_drive_file</mat-icon>
+        </button>
+      </div>
+      <div divider></div>
+      <div files>
+        <div filename *ngFor="let file of designerFiles" (click)="loadDesigner(file)">
+          <div>{{file.name}}</div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="activeDesign!==null">
+      <button mat-icon-button (click)="activeDesign=null">
+        <mat-icon>close</mat-icon>
+      </button>
+      <button mat-icon-button (click)="copyDesigner()">
+        <mat-icon>file_copy</mat-icon>
+      </button>
+      <button mat-icon-button (click)="saveDesigner()">
+        <mat-icon>save</mat-icon>
+      </button>
+      <button mat-icon-button (click)="uploadFiles()">
+        <mat-icon>cloud_upload</mat-icon>
+      </button>
+      <div divider></div>
+      <div designer-side-panel>
+        <div name>
+          <mat-form-field>
+            <input matInput [(ngModel)]="activeDesign.name" placeholder="Design Name">
+          </mat-form-field>
+        </div>
+        <div minW>
+          <mat-form-field>
+            <input matInput [(ngModel)]="activeDesign.minW" placeholder="min">
+          </mat-form-field>
+        </div>
+        <div width>
+          <mat-form-field>
+            <input matInput [(ngModel)]="activeDesign.width" placeholder="Width">
+          </mat-form-field>  
+        </div>
+        <div maxW>
+          <mat-form-field>
+            <input matInput [(ngModel)]="activeDesign.maxW" placeholder="max">
+          </mat-form-field>
+        </div>
+        <div minH>
+          <mat-form-field>
+            <input matInput [(ngModel)]="activeDesign.minH" placeholder="min">
+          </mat-form-field> 
+        </div>
+        <div height>
+          <mat-form-field>
+            <input matInput [(ngModel)]="activeDesign.height" placeholder="Height">
+          </mat-form-field>   
+        </div>
+        <div maxH>
+          <mat-form-field>
+            <input matInput [(ngModel)]="activeDesign.maxH" placeholder="max">
+          </mat-form-field>
+        </div>
+        <div destination>
+          <mat-form-field>
+            <input matInput [(ngModel)]="activeDesign.destination" placeholder="destination">
+          </mat-form-field>
+        </div>
+        <div input>
+          <mat-form-field>
+            <input matInput [(ngModel)]="activeDesign.input" placeholder="@Input()">
+            <div matSuffix (click)="activeDesign.includedata=!activeDesign.includedata" [style.color]="activeDesign.includedata ? 'rgb(0,175,100)':'rgb(175,100,0)'">
+              <mat-icon>ballot</mat-icon>
+            </div>
+          </mat-form-field>
+        </div>
+        <div fsdoc>
+          <mat-form-field>
+            <input matInput [(ngModel)]="activeDesign.fsdoc" (change)="loadfsdoc()">
+          </mat-form-field>
+        </div>
+      </div>
+    </ng-container>
+  </mat-sidenav>
+  <mat-sidenav mode="side" position="end" [opened]="leftopen && outlet" style="padding:10px;">
+    <ng-container *ngIf="outlet">
+      <mat-form-field style="display: grid">
+        <span matPrefix>
+          <button mat-icon-button (click)="outlet=null" color="primary">
+            <mat-icon>close</mat-icon>
+          </button>
+        </span>
+        <input matInput [(ngModel)]="outlet.name" placeholder="Name">
+      </mat-form-field>
+      <div divider></div>
+      <div>
+        <small>Content Placement</small>
+      </div>
+      <mat-form-field>
+        <mat-select [(ngModel)]="outlet.placementX" placeholder="X Axis">
+          <mat-option value="auto">auto</mat-option>
+          <mat-option value="normal">normal</mat-option>
+          <mat-option value="start">start</mat-option>
+          <mat-option value="center">center</mat-option>
+          <mat-option value="end">end</mat-option>
+          <mat-option value="stretch">stretch</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select [(ngModel)]="outlet.placementY" placeholder="Y Axis">
+          <mat-option value="auto">auto</mat-option>
+          <mat-option value="normal">normal</mat-option>
+          <mat-option value="start">start</mat-option>
+          <mat-option value="center">center</mat-option>
+          <mat-option value="end">end</mat-option>
+          <mat-option value="stretch">stretch</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div divider></div>
+      <div>
+        <small>Template</small>
+      </div>
+      <div divider></div>
+      <mat-form-field style="display: grid">
+        <textarea
+                    matInput
+                    [(ngModel)]="outlet.html"
+                ></textarea>
+      </mat-form-field>
+      <div divider></div>
+      <div>
+        <small>Style</small>
+      </div>
+      <div divider></div>
+      <div>
+        <div *ngFor="let property of outlet.properties">
+          <input propedit [(ngModel)]="property.key" style="max-width: 100px;">&nbsp;:&nbsp;<input propedit [(ngModel)]="property.value" style="width: calc(100% - 110px);">
+        </div>
+        <div>
+          <input propedit [(ngModel)]="newProperty.key" style="max-width: 100px;" (change)="addProperty()">&nbsp;:&nbsp;<input propedit [(ngModel)]="newProperty.value" (change)="addProperty()" style="width: calc(100% - 110px);">
+        </div>
+      </div>
+      <!-- <mat-form-field style="display: grid">
+                <textarea
+                    matInput
+                    [(ngModel)]="outlet.css"
+                ></textarea>
+            </mat-form-field> -->
+      <div divider></div>
+      <button mat-icon-button (click)="deleteOutlet()" color="warn">
+        <mat-icon>remove_circle</mat-icon>
+      </button>
+    </ng-container>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <button mat-icon-button color="primary" disableRipple="true" (click)="leftopen=!leftopen" style="position: absolute;
+                top: -10px;
+                left: -10px;">
+      <mat-icon *ngIf="leftopen">chevron_left</mat-icon>
+      <mat-icon *ngIf="!leftopen">chevron_right</mat-icon>
+    </button>
+    <ng-container *ngIf="activeDesign && activeDesign.rows">
+      <mat-accordion multi="true">
+        <mat-expansion-panel expanded="true">
+          <mat-expansion-panel-header> Design </mat-expansion-panel-header>
+          <div designer-design>
+            <div gap>
+              <div>
+                <mat-form-field style="width:50px;margin-left: 5px;">
+                  <input matInput [(ngModel)]="activeDesign.gap" placeholder="gap">
+                </mat-form-field>
+              </div>
+            </div>
+            <div grid>
+              <div style="box-sizing:border-box;border: 1px dotted  rgba(0,0,0,.15); position: relative;" [style.border-width]="activeDesign && activeDesign && activeDesign.gap && activeDesign?.gap!=='' ? '0px 0px 0px 0px' :  '1px 0px 0px 1px'" [style.width]="activeDesign?.width" [style.min-width]="activeDesign?.minW" [style.max-width]="activeDesign?.maxW" [style.height]="activeDesign?.height" [style.min-height]="activeDesign?.minH" [style.max-height]="activeDesign?.maxH">
+                <div [gdRows]="getRowHeights()" [gdGap]="activeDesign?.gap" [gdColumns]="getColumnWidths()" style="height:100%;width:100%">
+                  <ng-container *ngFor="let outletItem of activeDesign.outlets">
+                    <ng-container *ngIf="outletItem!==outlet">
+                      <div [gdColumn]="outletItem.fromCol + ' / ' + (outletItem.toCol+1)" [gdRow]="outletItem.fromRow + ' / ' + (outletItem.toRow+1)" style="position:relative;background-color: transparent">
+                        <div style="position: absolute; top:1px;left:1px;right:1px;bottom: 1px; border: 1px dashed rgba(0,100,175,.5);display: grid;;background-color: transparent">
+                          <div style="justify-self: center;align-self: center;" [innerText]="outTarget(outletItem)"></div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                  <ng-container *ngFor="let row of [] | range: activeDesign.rows : 1; let ri">
+                    <ng-container *ngFor="let column of [] | range: activeDesign.columns : 1; let ci">
+                      <div [gdColumn]="ci" [gdRow]="ri" (click)="setCell($event,ci,ri)" style="border: 1px dotted  rgba(0,0,0,.15); position: relative;display: grid; background-color: rgba(255,255,255,.33)" [style.border-width]="activeDesign && activeDesign && activeDesign.gap && activeDesign?.gap!=='' ? '1px 1px 1px 1px' :  '0px 1px 1px 0px'">
+                        <div style="position: absolute; top:0;left:0;right:0;bottom: 0;display: grid;"></div>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                  <!-- <ng-container *ngFor="let outletItem of activeDesign.outlets">
+                    <ng-container *ngIf="outletItem!==outlet">
+                      <div [gdColumn]="outletItem.fromCol" [gdRow]="outletItem.fromRow" style="position:relative;background-color: rgba(255,255,255,.1)" (click)="setCell($event,outletItem.fromCol,outletItem.fromRow)">
+                        <div style="position: absolute; top:0px;left:0px;width:15px;height: 15px; display: grid;border-radius: 50%;background-color: rgba(0,100,175,.5)" (click)="editOutlet(outletItem)">
+                        </div>
+                      </div>
+                    </ng-container>
+                  </ng-container> -->
+                  <ng-container *ngIf="fromColumnId>0 && fromRowId>0 && outlet">
+                    <div [gdColumn]="fromColumnId + ' / ' + (toColumnId+1)" [gdRow]="fromRowId + ' / ' + (toRowId+1)" style="position:relative">
+                      <div style="position: absolute; top:0;left:0;right:0;bottom: 0; border: 1px dashed rgba(0,175,100,.5);display: grid;background-color: rgba(0,175,100,.05)">
+                        <input outletedit type="text" [value]="outlet.name" (blur)="saveOutlet(areaInput.value)" #areaInput style="min-width: 40px;width:80%; justify-self: center;align-self: center;">
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+            <div colcount>
+              <div>
+                <mat-form-field style="width:50px;margin-left: 5px;">
+                  <input matInput [(ngModel)]="activeDesign.columns" placeholder="# columns" type="number" [max]="24">
+                </mat-form-field>
+              </div>
+            </div>
+            <div rowsizes>
+              <div style="position: relative;" [style.height]="activeDesign?.height" [style.min-height]="activeDesign?.minH" [style.max-height]="activeDesign?.maxH">
+                <div [gdRows]="getRowHeights()" [gdGap]="activeDesign?.gap" style="height:100%;width:100%;position: relative;display: grid;">
+                  <div [gdRow]="ri" gdColumn="1" *ngFor="let row of [] | range: activeDesign.rows : 1; let ri" style="height:100%;width:100%;position: relative;display:grid">
+                    <input gridedit type="text" [(ngModel)]="activeDesign.heights[ri]" style="min-width: 40px;width:80%; justify-self: center;align-self: center;">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div rowcount>
+              <div>
+                <mat-form-field style="width:50px;margin-left: 5px;">
+                  <input matInput [(ngModel)]="activeDesign.rows" placeholder="# rows" type="number" [max]="24">
+                </mat-form-field>
+              </div>
+            </div>
+            <div colsizes>
+              <div style="position: relative;">
+                <div [gdColumns]="getColumnWidths()" [gdGap]="activeDesign?.gap" style="height:100%;width:100%;position: relative;" [style.width]="activeDesign?.width" [style.min-width]="activeDesign?.minW" [style.max-width]="activeDesign?.maxW">
+                  <div [gdColumn]="ci" gdRow="1" *ngFor="let column of [] | range: activeDesign.columns : 1; let ci" style="height:100%;width:100%;position: relative;;display:grid">
+                    <input gridedit type="text" [(ngModel)]="activeDesign.widths[ci]" style="min-width: 40px;width:80%; justify-self: center;align-self: center;">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div outlets style="border-right:1px solid rgba(0,0,0,.1);align-items: flex-start">
+              <div><b>OUTLETS</b></div>
+              <div *ngFor="let outletItem of activeDesign.outlets">
+                <ng-container *ngIf="outletItem!==outlet">
+                  <div  (click)="editOutlet(outletItem)"><span [style.color]="'rgba(0,0,0,.66)'" > {{outletItem.name}}</span></div>
+                </ng-container>
+                <ng-container *ngIf="outletItem===outlet">
+                  <div (click)="resetOutlet()"><span [style.color]="'rgba(0,100,175,1)'" > {{outletItem.name}}</span></div>
+                </ng-container>
+              </div>
+              <div style="flex:1 1 100%"></div>
+              <div *ngIf="outlet" (click)="resetOutlet()"><em>reset selection</em></div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="activeDesign.uploaded">
+          <mat-expansion-panel-header> Preview </mat-expansion-panel-header>
+          <ng-container *ngIf="activeDesign && activeDesign.uploaded">
+            <a [href]="'http://localhost:4250/'+activeDesign.path" target="_blank">
+              <button mat-icon-button (click)="uploadFiles()">
+                <mat-icon>open_in_new</mat-icon>
+              </button>
+            </a>
+          </ng-container>
+          <div gdArea="preview" style="padding:10px 0px 150px 100px;position: relative;box-sizing: content-box" [style.width]="activeDesign?.width" [style.height]="activeDesign?.height">
+            <div style="position:absolute;top:10px;left:100px; right: -100px;bottom: -150px;">
+              <iframe [src]="getPreviewSrc()" style="width: 100%; height: 100%; overflow: visible; border: none;"></iframe>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header> Code </mat-expansion-panel-header>
+          <div root gdAreas="tsresult htmlresult cssresult" gdColumns="1fr 1fr 1fr" gdRows="auto">
+            <div gdArea="tsresult">
+              <div divider></div>
+              <div>
+                <small>TYPESCRIPT</small>
+              </div>
+              <div divider></div>
+              <div style="white-space: pre-wrap">{{getTs()}}</div>
+            </div>
+            <div gdArea="htmlresult">
+              <div divider></div>
+              <div>
+                <small>HTML</small>
+              </div>
+              <div divider></div>
+              <div style="white-space: pre-wrap">{{getHtml()}}</div>
+            </div>
+            <div gdArea="cssresult">
+              <div divider></div>
+              <div>
+                <small>CSS</small>
+              </div>
+              <div divider></div>
+              <div style="white-space: pre-wrap">{{getCss()}}</div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="activeDesign && activeDesign.model && activeDesign.model.trim().length>0">
+          <mat-expansion-panel-header> Data </mat-expansion-panel-header>
+          <prettyjson [obj]="activeDesign.model"></prettyjson>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </ng-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>

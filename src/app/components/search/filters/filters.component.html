@@ -1,0 +1,81 @@
+<mat-list dense>
+  <!-- <mat-divider></mat-divider> -->
+  <h3 mat-subheader>Package Types</h3>
+  <!-- <mat-divider></mat-divider> -->
+  <mat-list-item (click)="setPackageType.emit('DAY')">
+    <mat-icon mat-list-icon>{{(criteria?.maxNights===0) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> Spa Days</mat-list-item>
+  <mat-list-item (click)="setPackageType.emit('BREAK')">
+    <mat-icon mat-list-icon>{{(criteria?.minNights>0) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> Spa Breaks</mat-list-item>
+  <!-- <mat-list-item (click)="setPackageType.emit('NEW')">
+    <mat-icon mat-list-icon>{{(criteria?.packageType | contains:'NEW') ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> New Offers</mat-list-item>
+  <mat-list-item (click)="setPackageType.emit('ENDING')">
+    <mat-icon mat-list-icon>{{(criteria?.packageType | contains:'ENDING') ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> Ending Soon</mat-list-item> -->
+  <!-- <mat-divider></mat-divider> -->
+  <h3 mat-subheader><div>Distance</div><div></div>
+    <mat-icon mat-list-icon *ngIf="criteria?.maxDistance !== 9999" (click)="setDistance.emit(9999);setRegion.emit('*')">clear</mat-icon>
+  </h3>
+  <!-- <mat-divider></mat-divider> -->
+  <mat-list-item (click)="setDistance.emit(10)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 10) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 10 miles</mat-list-item>
+  <mat-list-item (click)="setDistance.emit(25)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 25) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 25 miles</mat-list-item>
+  <mat-list-item (click)="setDistance.emit(50)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 50) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 50 miles</mat-list-item>
+  <mat-list-item (click)="setDistance.emit(75)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 75) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 75 miles</mat-list-item>
+  <mat-list-item (click)="setDistance.emit(100)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 100) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 100 miles</mat-list-item>
+  <mat-list-item (click)="setDistance.emit(150)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 150) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> 150 miles</mat-list-item>
+  <!-- <mat-divider></mat-divider> -->
+  <h3 mat-subheader><div>Price From</div><div></div>
+    <mat-icon mat-list-icon *ngIf="criteria?.minPrice !== 1" (click)="setPriceFrom.emit(1)">clear</mat-icon>
+  </h3>
+  <!-- <mat-divider></mat-divider> -->
+  <mat-list-item (click)="setPriceFrom.emit(50)" *ngIf="criteria?.maxPrice>50">
+    <mat-icon mat-list-icon>{{(criteria?.minPrice === 50) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> from £50</mat-list-item>
+  <mat-list-item (click)="setPriceFrom.emit(100)" *ngIf="criteria?.maxPrice>100">
+    <mat-icon mat-list-icon>{{(criteria?.minPrice === 100) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> from £100</mat-list-item>
+  <mat-list-item (click)="setPriceFrom.emit(150)" *ngIf="criteria?.maxPrice>150">
+    <mat-icon mat-list-icon>{{(criteria?.minPrice === 150) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> from £150</mat-list-item>
+  <mat-list-item (click)="setPriceFrom.emit(200)" *ngIf="criteria?.maxPrice>200">
+    <mat-icon mat-list-icon>{{(criteria?.minPrice === 200) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> from £200</mat-list-item>
+  <mat-list-item (click)="setPriceFrom.emit(250)" *ngIf="criteria?.maxPrice>250">
+    <mat-icon mat-list-icon>{{(criteria?.minPrice === 250) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> from £250</mat-list-item>
+  <mat-list-item *ngIf="criteria?.maxPrice<=50">
+    <mat-icon mat-list-icon></mat-icon> from £50</mat-list-item>
+  <mat-list-item *ngIf="criteria?.maxPrice<= 100">
+    <mat-icon mat-list-icon></mat-icon> from £100</mat-list-item>
+  <mat-list-item *ngIf="criteria?.maxPrice<=150">
+    <mat-icon mat-list-icon></mat-icon> from £150</mat-list-item>
+  <mat-list-item *ngIf="criteria?.maxPrice<=200">
+    <mat-icon mat-list-icon></mat-icon> from £200</mat-list-item>
+  <mat-list-item *ngIf="criteria?.maxPrice<=250">
+    <mat-icon mat-list-icon></mat-icon> from £250</mat-list-item>
+  <!-- <mat-divider></mat-divider> -->
+  <h3 mat-subheader><div>Price To</div><div></div>
+    <mat-icon mat-list-icon *ngIf="criteria?.maxPrice !== 9999" (click)="setPriceTo.emit(9999)">clear</mat-icon>
+  </h3>
+  <!-- <mat-divider></mat-divider> -->
+  <mat-list-item *ngIf="criteria?.minPrice>=50">
+    <mat-icon mat-list-icon></mat-icon> to £50</mat-list-item>
+  <mat-list-item *ngIf="criteria?.minPrice >= 100">
+    <mat-icon mat-list-icon></mat-icon> to £100</mat-list-item>
+  <mat-list-item *ngIf="criteria?.minPrice>=150">
+    <mat-icon mat-list-icon></mat-icon> to £150</mat-list-item>
+  <mat-list-item *ngIf="criteria?.minPrice>=200">
+    <mat-icon mat-list-icon></mat-icon> to £200</mat-list-item>
+  <mat-list-item *ngIf="criteria?.minPrice>=250">
+    <mat-icon mat-list-icon></mat-icon> to £250</mat-list-item>
+  <mat-list-item (click)="setPriceTo.emit(50)" *ngIf="criteria?.minPrice<50">
+    <mat-icon mat-list-icon>{{(criteria?.maxPrice === 50) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> to £50</mat-list-item>
+  <mat-list-item (click)="setPriceTo.emit(100)" *ngIf="criteria?.minPrice<100">
+    <mat-icon mat-list-icon>{{(criteria?.maxPrice === 100) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> to £100</mat-list-item>
+  <mat-list-item (click)="setPriceTo.emit(150)" *ngIf="criteria?.minPrice<150">
+    <mat-icon mat-list-icon>{{(criteria?.maxPrice === 150) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> to £150</mat-list-item>
+  <mat-list-item (click)="setPriceTo.emit(200)" *ngIf="criteria?.minPrice<200">
+    <mat-icon mat-list-icon>{{(criteria?.maxPrice === 200) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> to £200</mat-list-item>
+  <mat-list-item (click)="setPriceTo.emit(250)" *ngIf="criteria?.minPrice<250">
+    <mat-icon mat-list-icon>{{(criteria?.maxPrice === 250) ? 'check_box' : 'check_box_outline_blank'}}</mat-icon> to £250</mat-list-item>
+  <!-- <mat-divider></mat-divider> -->
+</mat-list>

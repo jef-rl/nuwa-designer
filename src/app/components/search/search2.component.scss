@@ -1,0 +1,416 @@
+[accent] {
+  color: rgb(255, 64, 128);
+}
+
+:host {
+  position: relative;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+[gdArea="filters"] {
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+[gdArea="divider"] {
+  background-color: rgb(255, 64, 128);
+}
+
+[gdArea="toggle"] {
+  background-color: rgb(255, 64, 128);
+  color: #fff;
+}
+
+[venues-list][gdAreas] {}
+
+[css-grid] {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 350px));
+  grid-gap: 10px;
+  grid-auto-flow: dense;
+  list-style: none;
+  min-height: 100vh;
+}
+
+[filters] {
+  position: absolute;
+  top: calc(50% - 20px);
+  background: rgb(255, 64, 128);
+  color: #fff;
+  z-index: 999;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: stretch;
+  border-radius: 0 6px 6px 0;
+  height: 30px;
+  overflow: visible;
+  width: 24px;
+
+  &.small-screen {
+    left: 200px;
+  }
+
+  &:before {
+    content: " ";
+    height: 100vh;
+    min-width: 2px;
+    background-color: #ff4081;
+  }
+
+  mat-icon {
+    margin-left: -2px;
+  }
+}
+
+[status-bar] {
+  position: relative;
+  left: 0;
+  right: 0;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    position: relative;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px 5px 0 0;
+
+    [panel] {
+      position: relative;
+      top: 0px;
+      box-shadow: none;
+      background-color: transparent;
+      flex: 0 1 auto;
+      margin: 0 0px;
+    }
+  }
+}
+
+mat-grid-list {
+  margin-bottom: 55px;
+}
+
+mat-form-field.mat-form-field {
+  font-size: 12px;
+}
+
+.venue-card {
+  font-family: 'Raleway', sans-serif;
+  font-size: .75rem;
+  line-height: 1.15;
+  flex: 1 1 auto;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2);
+  position: relative;
+  min-height: 250px;
+  height: 80vw;
+  max-height: 300px;
+}
+
+.venue-card {
+  [grid-tile-header] {
+    position: absolute;
+    height: 70px;
+    bottom: 113px;
+    margin-top: -70px;
+    font-size: 1.5em;
+    width: 100%;
+    padding: 25px 15px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, .75);
+    font-weight: 500;
+    border-style: solid;
+    border-color: rgba(255, 64, 129, 0.5);
+    border-width: 0px 0px 4px 0px;
+
+    div {
+      display: flex;
+      align-items: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  [grid-tile-address] {
+    position: absolute;
+    background-color: rgba(255, 255, 255, .75);
+    bottom: 85px;
+    width: 100%;
+    height: 28px;
+    padding: 0px 15px 0px 15px;
+    font-size: 1em;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  [grid-tile-packages] {
+    position: absolute;
+    background-color: rgba(255, 255, 255, .75);
+    bottom: 57px;
+    width: 100%;
+    height: 28px;
+    padding: 0px 15px 0px 15px;
+    font-size: 1em;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  [tile-summary] {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    [tile-price] {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 10px;
+
+      div {
+        width: 100%;
+        font-size: 1em;
+        font-weight: 100;
+        text-align: center;
+        color: rgba(0, 0, 0, .68);
+      }
+
+      [price] {
+        font-size: 2.5em;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(0, 0, 0, .9);
+      }
+    }
+
+    [spacer] {
+      flex: 1 1 0px;
+    }
+
+    [tile-rating] {
+      flex: 0 1 auto;
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(0, 0, 0, .9);
+
+      div {
+        width: 100%;
+        font-size: 1em;
+        font-weight: 100;
+        text-align: center;
+        justify-content: center;
+        color: rgba(0, 0, 0, .68);
+      }
+
+      mat-icon {
+        height: 15px;
+        width: 15px;
+        font-size: 15px;
+        color: #EB6E00;
+      }
+
+      [score] {
+        font-size: 2.5em;
+        font-weight: 700;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(235, 110, 0, 0.68);
+      }
+    }
+  }
+}
+
+.venue-card img {
+  position: absolute;
+  bottom: 113px;
+  min-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+[geomap] {
+  align-items: center;
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+
+  div {
+    position: relative;
+    width: auto;
+    height: auto;
+
+    img {
+      position: relative;
+      top: -8px;
+      left: 12px;
+    }
+
+    [place] {
+      position: absolute;
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      border: 2px solid rgba(0, 0, 0, .11);
+      background-color: #ff7;
+      box-sizing: border-box;
+    }
+  }
+}
+
+
+
+
+// CLWEAN UP
+
+[search-form] {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0px 16px
+}
+
+[search-field] {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: 640px;
+  position: relative;
+
+  [ico-panel] {
+    flex: 1 1 auto;
+    min-height: 30px;
+
+    [overlay] {
+      position: absolute;
+      right: 5px;
+    }
+  }
+}
+
+[spacing] {
+  width: 8px;
+  flex: 0 0 8px;
+}
+
+[cols-end] {
+  flex: 0 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center
+}
+
+[col-info] {
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  text-align: center;
+
+  div[info] {
+    font-size: 10px;
+    line-height: 14px;
+    height: 14px;
+  }
+
+  div[data] {
+    font-size: 14px;
+  }
+}
+
+[ico-sm] {
+  font-size: 16px;
+  width: 16px;
+}
+
+[heading] {
+  flex: 1 1 0px;
+  overflow: hidden;
+  margin-right: 3px;
+  color: rgba(0, 0, 0, 0.54);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  height: 8px;
+  line-height: 8px;
+}
+
+[heading-selection] {
+  position: absolute;
+  flex: 1 1 0px;
+  overflow: hidden;
+  margin-right: 3px;
+}
+
+mat-form-field[search-field].mat-focused span[extra].editing {
+  opacity: .5;
+  font-weight: 100;
+}
+
+[suffix] {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 0 0 0 8px;
+}
+
+[divider] {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, .11);
+  margin: 3px 0px;
+}
+
+[option] {
+  padding: 0 8px;
+}
+
+[filter-criteria] {
+
+  height: 36px !important;
+
+}
+
+[mat-subheader] {
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  div[spacer] {
+    flex: 1 1 0px;
+  }
+}

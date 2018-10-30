@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+[prettyjson] pre {
+  height: 100%;
+
+  span {
+    white-space: normal;
+  }
+
+  .string {
+    color: green;
+  }
+
+  .number {
+    color: darkorange;
+  }
+
+  .boolean {
+    color: blue;
+  }
+
+  .null {
+    color: magenta;
+  }
+
+  .key {
+    color: red;
+  }
+}
+
+
+
+.content {
+  padding: 5vh 5vw;
+}
+
+.indent {
+  margin: 20px;
+  margin-left: 40px;
+  padding: 10px;
+  border-left: 2px solid gray;
+}
+
+.mat-autocomplete-panel {
+  min-width: 112px;
+  max-height: 50vh !important;
+}
+
+.mat-option,
+.mat-optgroup-label {
+  line-height: 26px !important;
+  height: 26px !important;
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+
+app-search3 mat-expansion-panel div.mat-expansion-panel-content div.mat-expansion-panel-body {
+  padding: 0 0 8px 0;
+} 

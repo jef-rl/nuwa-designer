@@ -1,0 +1,24 @@
+<div [formGroup]="form">
+  <div [ngSwitch]="editorControl.controlType">
+    <mat-form-field *ngSwitchCase="'textbox'" class="example-full-width">
+      <input matInput [placeholder]="editorControl.label" [formControlName]="editorControl.key" [id]="editorControl.key" [type]="editorControl.type">
+      <mat-hint>Errors appear instantly!</mat-hint>
+      <mat-error *ngIf="editorControl.required"> Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field *ngSwitchCase="'dropdown'">
+        <mat-select [placeholder]="editorControl.label" [formControlName]="editorControl.key" [id]="editorControl.key" [required]="editorControl.required">
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let opt of editorControl.options" [value]="opt.key">{{opt.value}}          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <ng-container   *ngSwitchCase="'array'">
+      <div *ngFor="let row of editorControl.value" class="form-row">
+        <div>{{row.label}}</div>
+          <app-editor-control [editorControl]="row" [form]="form"></app-editor-control>
+        </div>
+      </ng-container>
+  </div>
+  <div class="errorMessage" *ngIf="!isValid">{{editorControl.label}} is required</div>
+</div>

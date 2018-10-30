@@ -1,0 +1,186 @@
+{
+  "id": "ChIJ0bXZzKv5cEgRvU5QCRlexno",
+  "venue_detail": [{
+    "detail": ["With a wide variety of treatments and facilities, it is ideal for a hen party designed to make you all glow on the big day!"],
+    "title": "Hen Friendly"
+  }, {
+    "detail": ["The AA rosette awarded restaurant is recommended for its seasonal menu."],
+    "title": "Restaurant"
+  }, {
+    "detail": ["Malvern is a town rooted in history- the Great Malvern Priory, theatres, and boutique shops, it's an enchanting place to explore at a leisurely pace."],
+    "title": "Local Attractions"
+  }, {
+    "detail": ["The whole venue is built around its health facilities, and offers specialised treatments including reflexology, Reiki, Botox, and non-surgical CACI treatments ... buttock lift anyone?"],
+    "title": "Health Spa Venue"
+  }, {
+    "detail": ["There are two accessible bedrooms at the hotel with handrails and emergency pull cords in the bathroom. There is a lift, and all facilities are on the ground floor."],
+    "title": "Accessible Spa"
+  }, {
+    "detail": ["Carers are invited to accompany guests and use the facilities free of charge subject to availability."],
+    "title": "Carer Goes Free"
+  }],
+  "venue_id": 80,
+  "venue_image": "the_malvern_-_by_jan_sedlacek_-_digitlight.co.uk_-6.jpg",
+  "venue_images": ["the_malvern_-_by_jan_sedlacek_-_digitlight.co.uk_-6.jpg", "_n5j45hx.jpg", "nhpgofra-3.jpg", "0ipomo37-3.jpg", "ole85y1n.jpg", "4501ukav-2.jpg", "roltli_5.jpg", "4ka84u3z-4.jpg", "a6qyls6_.jpg", "1r3lbe5-3.jpg", "e11q0s0u.jpg", "j3lapxup-2.jpg", "rb4usyv-.jpg", "0we05144-13.jpg", "d2wrrqj4-3.jpg", "nslzpos9-13.jpg"],
+  "venue_info": [{
+    "detail": ["Because of its natural spring waters, the Worcester town of Malvern is known as a spa town, so it's only appropriate that it plays home to The Malvern hotel, spa and health club. Embracing its heritage, the venue offers a wide range of facilities including a 20 metre indoor/outdoor pool that remains at a constant and optimum (by hydrotherapy standards) 35â° C, a thermal suite (that is to say herb sauna, steam room, hydrotherapy pool and ice fountain) and a gym.", "Once you have spent a little time settling into your surroundings, it's on to the treatments using ESPA, REN and Jessica Nails products The Malvern offers reflexology, Reiki, and Hopi ear candling as well as facials, massages, scrubs, and wraps, non-surgical CACI treatments, weekly Botox clinics and finishing touches."],
+    "title": "Spa & Leisure"
+  }, {
+    "detail": ["With 32 rooms, each sporting a neutral colour palette and contemporary design accented with a feature colour, the hotel was the first spa in Malvern in 1910 and is very much a destination designed for 'grown-ups'- that will explain the predominantly off-white soft furnishings then.", "There are two dining options- both elaborate, but one a little more formal than the other. The Malvern Restaurant is open for afternoon tea and evening meals and is very much the fine dining option providing a seasonal menu overseen by award-winning chef, Steve Rimmer; while the glass atrium that is The Malvern Brasserie is characterised by 200 year old olive trees and is open throughout the day as the final feather in the spa's cap."],
+    "title": "Hotel & Accommodation"
+  }],
+  "venue_location": {
+    "addr": "Grovewood Rd, Malvern",
+    "gpid": "ChIJ0bXZzKv5cEgRvU5QCRlexno",
+    "lat": 52.1283675,
+    "lng": -2.3006406,
+    "name": "The Malvern Spa Hotel",
+    "postcode": "WR14 1GD",
+    "rating": 4.4,
+    "region": "West Midlands"
+  },
+  "venue_name": "the-malvern-spa-hotel-wr14-1gd",
+  "venue_package_items": [{
+    "end_date": "2018-12-31",
+    "flag_ending": false,
+    "flag_new": false,
+    "id": "1680",
+    "number_of_nights": 0,
+    "number_of_people": 1,
+    "package_description": "Includes light lunch and Luxury Cream Tea, robe, towel and slippers provided and full use of the facilities. \r\n",
+    "package_name": "Relax Spa Day ",
+    "price_day": ["65.00", "65.00", "65.00", "65.00", null, null, null],
+    "price_from": "65.00",
+    "products": [{
+      "days_available": [0, 1, 2, 3],
+      "end_date": "2018-12-31",
+      "price": "65.00",
+      "start_date": "2012-09-01"
+    }],
+    "venue_id": 80
+  }, {
+    "end_date": "2018-12-31",
+    "flag_ending": false,
+    "flag_new": false,
+    "id": "1830",
+    "number_of_nights": 0,
+    "number_of_people": 1,
+    "package_description": "Includes a choice of 1 x 60 minute treatment from: Intensive Pure Massage Back Ritual, Bespoke Facial, Malvern Spa Manicure or Malvern Spa Pedicure, light lunch, hot drink, robe, towel and slippers provided and full use of the facilities. ",
+    "package_name": "Discovery Spa Day ",
+    "price_day": ["109.00", "109.00", "109.00", "109.00", "109.00", "119.00", "119.00"],
+    "price_from": "109.00",
+    "products": [{
+      "days_available": [0, 1, 2, 3, 4],
+      "end_date": "2018-12-31",
+      "price": "109.00",
+      "start_date": "2013-03-01"
+    }, {
+      "days_available": [5, 6],
+      "end_date": "2018-12-31",
+      "price": "119.00",
+      "start_date": "2013-03-01"
+    }],
+    "venue_id": 80
+  }, {
+    "end_date": "2018-12-31",
+    "flag_ending": false,
+    "flag_new": false,
+    "id": "5726",
+    "number_of_nights": 0,
+    "number_of_people": 1,
+    "package_description": "Includes 60 minute ESPA Skin Radiance Facial, Afternoon Tea, bottle of Prosecco and private use of our relaxation snug between 7pm - 8.30pm.  \r\n\r\n*_Canapes and drinks can be served at a supplement price of £10 per person._*\r\n",
+    "package_name": "Luxury Hen Spa Day ",
+    "price_day": ["139.00", "139.00", "139.00", "139.00", "139.00", "139.00", "139.00"],
+    "price_from": "139.00",
+    "products": [{
+      "days_available": [0, 1, 2, 3, 4, 5, 6],
+      "end_date": "2018-12-31",
+      "price": "139.00",
+      "start_date": "2016-10-10"
+    }],
+    "venue_id": 80
+  }, {
+    "end_date": "2018-12-31",
+    "flag_ending": false,
+    "flag_new": false,
+    "id": "2425",
+    "number_of_nights": 0,
+    "number_of_people": 1,
+    "package_description": "Includes a choice of 2 x 60 minute treatments from: Back Ritual, Bespoke Facial, Malvern Spa Manicure or Malvern Spa Pedicure, 2 course lunch, hot drink, robe, towel and slippers provided and full use of the spa facilities.",
+    "package_name": "All About Me Day",
+    "price_day": ["145.00", "145.00", "145.00", "145.00", "145.00", "155.00", "155.00"],
+    "price_from": "145.00",
+    "products": [{
+      "days_available": [0, 1, 2, 3, 4],
+      "end_date": "2018-12-31",
+      "price": "145.00",
+      "start_date": "2014-06-11"
+    }, {
+      "days_available": [5, 6],
+      "end_date": "2018-12-31",
+      "price": "155.00",
+      "start_date": "2014-06-11"
+    }],
+    "venue_id": 80
+  }, {
+    "end_date": "2018-12-21",
+    "flag_ending": false,
+    "flag_new": false,
+    "id": "1645",
+    "number_of_nights": 1,
+    "number_of_people": 1,
+    "package_description": "One night's dinner, bed and breakfast, a choice of 2 x 30 minute treatment from: Back Massage, Facial, Express File and Polish for fingers or File and Polish for toes, glass of Champagne, robe, towel and slippers provided and full use of the spa facilities from 12noon to 11am on the day of departure.\r\n\r\n*_8 people maximum_*\r\n\r\n",
+    "package_name": "The Malvern Hen Party Package",
+    "price_day": ["166.00", "166.00", "166.00", "166.00", null, null, null],
+    "price_from": "166.00",
+    "products": [{
+      "days_available": [0, 1, 2, 3],
+      "end_date": "2018-12-21",
+      "price": "166.00",
+      "start_date": "2012-05-01"
+    }],
+    "venue_id": 80
+  }, {
+    "end_date": "2018-12-31",
+    "flag_ending": false,
+    "flag_new": false,
+    "id": "1397",
+    "number_of_nights": 1,
+    "number_of_people": 2,
+    "package_description": "One night's dinner, bed and breakfast, a choice of 1 x 60 minute treatment from: Intensive Pure Massage Back Ritual, Bespoke Facial, Malvern Spa Manicure or Malvern Spa Pedicure, robe, towel and slippers provided and full use of the spa facilities from 12noon to 11am on the day of departure.",
+    "package_name": "Deluxe One Night Break",
+    "price_day": ["322.00", "322.00", "322.00", "322.00", null, null, "322.00"],
+    "price_from": "322.00",
+    "products": [{
+      "days_available": [0, 1, 2, 3, 6],
+      "end_date": "2018-12-31",
+      "price": "322.00",
+      "start_date": "2011-02-15"
+    }],
+    "venue_id": 80
+  }, {
+    "end_date": "2018-12-31",
+    "flag_ending": false,
+    "flag_new": false,
+    "id": "2856",
+    "number_of_nights": 2,
+    "number_of_people": 2,
+    "package_description": "Two nights' dinner, bed and breakfast, a choice of 2 x 60 minute treatment from: Intensive Pure Massage Back Ritual, Bespoke Facial, Malvern Spa Manicure or Malvern Spa Pedicure, robe, towel and slippers provided and full use of the spa facilities from 12noon to 11am on the day of departure.\r\n\r\n",
+    "package_name": "Deluxe Two Night Break ",
+    "price_day": ["604.00", "604.00", "604.00", "604.00", null, null, "604.00"],
+    "price_from": "604.00",
+    "products": [{
+      "days_available": [0, 1, 2, 3, 6],
+      "end_date": "2018-12-31",
+      "price": "604.00",
+      "start_date": "2014-11-20"
+    }],
+    "venue_id": 80
+  }],
+  "venue_packages": 7,
+  "venue_packages_break": 3,
+  "venue_packages_day": 4,
+  "venue_packages_ending": 0,
+  "venue_packages_new": 0,
+  "venue_price_from": "65.00"
+}

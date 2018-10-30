@@ -1,0 +1,17 @@
+.mat-list[dense] .mat-list-item.mat-list-item-with-avatar {
+  height: 30px;
+  &[indent] {
+    padding-left:24px;
+  }
+}
+
+.mat-list[dense] .mat-subheader {
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 0px 0px 10px;
+  mat-icon {
+    transform: scale(.75);
+  }
+}

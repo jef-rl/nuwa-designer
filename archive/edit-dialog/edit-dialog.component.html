@@ -1,0 +1,9 @@
+
+  <mat-form-field>
+      <input matInput [(ngModel)]="model.FieldName" placeholder="Field Name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="model.DefaultValue" placeholder="Default Value">
+      </mat-form-field>
+      
+  <button mat-raised-button (click)="updateModel()">Save</button>
